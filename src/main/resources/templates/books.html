@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>th:each Example</title>
+</head>
+<body>
+    <h1>All Books:</h1>
+    
+    <!--  TODO: Add 'add' checkboxes  -->
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Type</th>
+            <th>Publisher</th>
+            <th>Price</th>
+            <th>Add</th>
+        </tr>
+        <tr th:each="book: ${myBooks}" th:object="${book}">
+            <td th:text="*{title}"></td>
+            <td th:text="*{author}"></td>
+            <td th:text="*{type}"></td>
+            <td th:text="*{publisher}"></td>
+            <td th:text="*{price}"></td>     
+        </tr>
+        
+        
+    </table>
+</body>
+</html>

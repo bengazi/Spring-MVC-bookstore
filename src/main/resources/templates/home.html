@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Homepage</title>
+</head>
+<body>
+		<a th:href="@{/books}">All Books</a>
+		
+		<!--  TODO: fix object connection with Client -->
+		<h2>>Your order:</h2>
+		    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Type</th>
+            <th>Publisher</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="book: ${books}" th:object="${book}">
+            <td th:text="*{title}"></td>
+            <td th:text="*{author}"></td>
+            <td th:text="*{type}"></td>
+            <td th:text="*{publisher}"></td>
+            <td th:text="*{price}"></td>     
+        </tr>
+    </table>
+		
+</body>
+</html>
