@@ -10,15 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
-import javax.persistence.NamedQueries;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "Books.findAll", query = "SELECT b FROM Book b"),
-		@NamedQuery(name = "Books.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
-		@NamedQuery(name = "Books.deleteAll", query = "DELETE FROM Book b"),
-		@NamedQuery(name = "Books.deleteByTitle", query = "DELETE FROM Book b WHERE b.title = :title") })
 @Table(name = "book")
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,20 +23,26 @@ public class Book implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_book")
 	private Long id;
-
-	@Column(name = "book_title", nullable = false, length = 50)
+	
+	@NotEmpty(message = "{pl.marekhacieja.model.Book.title.NotEmpty}")
+	@Column(name = "book_title")
 	private String title;
 
-	@Column(name = "author", nullable = false, length = 50)
+	@NotEmpty(message = "{pl.marekhacieja.model.Book.author.NotEmpty}")
+	@Column(name = "author")
 	private String author;
 
-	@Column(name = "book_type", length = 30)
+	@NotEmpty(message = "{pl.marekhacieja.model.Book.type.NotEmpty}")
+	@Column(name = "book_type")
 	private String type;
 
-	@Column(name = "publisher", length = 30)
+	@NotEmpty(message = "{pl.marekhacieja.model.Book.publisher.NotEmpty}")
+	@Column(name = "publisher")
 	private String publisher;
 
-	@Column(name = "price", nullable = false, scale = 2)
+	@NotEmpty(message = "{pl.marekhacieja.model.Book.price.NotEmpty}")
+	@Min(value = 1, message = "{pl.marekhacieja.model.price.age.Min}")
+	@Column(name = "price", scale = 2)
 	private double price;
 
 	@ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)

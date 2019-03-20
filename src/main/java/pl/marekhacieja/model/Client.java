@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "client")
@@ -24,22 +26,29 @@ public class Client implements Serializable {
 	@Column(name = "id_client")
 	private Long id;
 
-	@Column(name = "username", nullable = false, unique = true)
+	@NotEmpty(message = "{pl.marekhacieja.model.Client.username.NotEmpty}")
+	@Column(name = "username", unique = true)
 	private String username;
 
-	@Column(name = "password", nullable = false)
+	@NotEmpty(message = "{pl.marekhacieja.model.Client.password.NotEmpty}")
+	@Column(name = "password")
 	private String password;
 
-	@Column(name = "email", nullable = false)
+	@Email(message = "{pl.marekhacieja.model.Client.email.Email}")
+	@NotEmpty(message = "{pl.marekhacieja.model.Client.email.NotEmpty}")
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "firstname", nullable = false)
+	@NotEmpty(message = "{pl.marekhacieja.model.Client.firstname.NotEmpty}")
+	@Column(name = "firstname")
 	private String firstname;
 
-	@Column(name = "lastname", nullable = false)
+	@NotEmpty(message = "{pl.marekhacieja.model.Client.lastname.NotEmpty}")
+	@Column(name = "lastname")
 	private String lastname;
 
-	@Column(name = "address", nullable = false, length = 256)
+	@NotEmpty(message = "{pl.marekhacieja.model.Client.address.NotEmpty}")
+	@Column(name = "address")
 	private String address;
 
 	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
