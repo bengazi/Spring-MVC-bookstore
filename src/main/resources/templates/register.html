@@ -9,7 +9,7 @@
 	<h1>Bookstore registration</h1>
 
 	<div>
-		<form action="#" method="post" th:action="@{/save}"
+		<form action="#" method="post" th:action="@{/register}"
 			th:object="${user}">
 			<div>
 				<p style="color: red;" th:if="${#fields.hasErrors('username')}"
