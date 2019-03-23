@@ -6,15 +6,18 @@
 </head>
 <body>
 	<h1>Bookstore</h1>
+	<div class="box">
 	<form action="#" method="post" th:action="@{/}" th:object="${client}">
+	<p style="color: red;" th:if="${invalidCredentials}" class="error"> Username or Password is wrong</p>
 		<p>
-			Username<input type="text" th:field="*{username}" />
+			<input type="text" th:field="*{username}" placeholder="Username" />
 		</p>
 		<p>
-			Password <input type="password" th:field="*{password}" />
+			 <input type="password" th:field="*{password}" placeholder="Password"/>
 		</p>
 		<input type="submit" value="Log in" />
 	</form>
 	<a th:href="@{/register}">Create new account</a>
+	</div>
 </body>
 </html>

@@ -34,7 +34,8 @@ public class LoginController {
 
 		if (clientRepository.findByPasswordAndUsername(password, username) != null) {
 			return "redirect:/home";
-		} else
+		} 
+			model.addAttribute("invalidCredentials", true);
 			return "index";
 	}
 

@@ -8,19 +8,19 @@
 <body>
 	<h1>Bookstore registration</h1>
 
-	<div>
+	<div align="center" >
 		<form action="#" method="post" th:action="@{/save}"
 			th:object="${client}">
 			<div>
 				<p style="color: red;" th:if="${#fields.hasErrors('username')}"
 					th:errors="*{username}">username errors</p>
-				</br> <input type="text" id="username" placeholder="Username"
+				 <input type="text" id="username" placeholder="Username"
 					th:field="*{username}" class="form-control" autofocus />
 			</div>
 			<div>
 				<p style="color: red;" th:if="${#fields.hasErrors('password')}"
 					th:errors="*{password}">password errors</p>
-				</br> <input type="password" id="password" placeholder="Password"
+				 <input type="password" id="password" placeholder="Password"
 					th:field="*{password}" />
 			</div>
 			<div>
@@ -54,6 +54,7 @@
 			</div>
 		
 			<input type="submit" value="Sign in" /> <a th:href="@{/}">Back</a>
+
 		</form>
 	</div>
 
