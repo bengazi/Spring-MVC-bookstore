@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.marekhacieja.model.Client;
 import pl.marekhacieja.repository.ClientRepository;
@@ -24,7 +25,7 @@ public class LoginController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		model.addAttribute("client", new Client());
-		return "index";
+		return  "index";
 	}
 
 	@PostMapping("/")

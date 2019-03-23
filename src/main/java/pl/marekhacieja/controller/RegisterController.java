@@ -26,14 +26,6 @@ public class RegisterController {
 		this.clientRepository = clientRepository;
 	}
 	
-	   @GetMapping("/save")
-	    public String home(Model model) {
-	        Client client = new Client();
-	        model.addAttribute(client);
-	        return "register";
-	    }
-	
-
 	@PostMapping("/save")
 	public String saveClient(@Valid @ModelAttribute Client client, BindingResult result) {
 		if (result.hasErrors()) {
