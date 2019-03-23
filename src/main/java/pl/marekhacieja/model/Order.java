@@ -21,7 +21,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Table(name = "client_order")
+@Table(name = "user_order")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -39,8 +39,8 @@ public class Order implements Serializable {
 	@Column(name = "date_issued")
 	private String dateIssued;
 	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private Client client;
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	Order() {
 	}
@@ -73,20 +73,21 @@ public class Order implements Serializable {
 		this.dateIssued = dateIssued;
 	}
 
-	public Client getClient() {
-		return client;
+	public User getUser() {
+		return user;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	
 	
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", dateIssued=" + dateIssued + " order size=" + books.size()  + ", client="
-				+ client.getFirstname() + " " + client.getLastname() + ", book=" + books + "]";
+		return "Order [id=" + id + ", dateIssued=" + dateIssued + " order size=" + books.size()  + ", user="
+				+ user.getFirstname() + " " + user.getLastname() + ", book=" + books + "]";
 	}
+	
 
 }

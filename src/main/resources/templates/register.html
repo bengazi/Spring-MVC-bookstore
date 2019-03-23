@@ -10,7 +10,7 @@
 
 	<div>
 		<form action="#" method="post" th:action="@{/save}"
-			th:object="${client}">
+			th:object="${user}">
 			<div>
 				<p style="color: red;" th:if="${#fields.hasErrors('username')}"
 					th:errors="*{username}">username errors</p>

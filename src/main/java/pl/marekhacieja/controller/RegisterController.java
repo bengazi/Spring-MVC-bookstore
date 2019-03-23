@@ -13,30 +13,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import pl.marekhacieja.model.Client;
-import pl.marekhacieja.repository.ClientRepository;
+import pl.marekhacieja.model.User;
+import pl.marekhacieja.repository.UserRepository;
 
 @Controller
 public class RegisterController {
 
-	private ClientRepository clientRepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	public RegisterController(ClientRepository clientRepository) {
-		this.clientRepository = clientRepository;
+	public RegisterController(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
-	
+
 	@PostMapping("/save")
-	public String saveClient(@Valid @ModelAttribute Client client, BindingResult result) {
+	public String saveUser(@Valid @ModelAttribute User user, BindingResult result) {
 		if (result.hasErrors()) {
 			List<ObjectError> errors = result.getAllErrors();
 			errors.forEach(err -> System.out.println(err.getDefaultMessage()));
 			return "register";
 		}
-			clientRepository.save(client);
-			return "index";
-		
-		
+		userRepository.save(user);
+		return "index";
+
 	}
 }
-	

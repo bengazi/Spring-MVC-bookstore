@@ -7,33 +7,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import pl.marekhacieja.model.Client;
-import pl.marekhacieja.repository.ClientRepository;
+
+import pl.marekhacieja.model.User;
+import pl.marekhacieja.repository.UserRepository;
 
 @Controller
 public class LoginController {
 
-	private ClientRepository clientRepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	public LoginController(ClientRepository clientRepository) {
-		this.clientRepository = clientRepository;
+	public LoginController(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
 
 	@RequestMapping("/")
 	public String home(Model model) {
-		model.addAttribute("client", new Client());
+		model.addAttribute("user", new User());
 		return  "index";
 	}
 
 	@PostMapping("/")
-	public String Login(@ModelAttribute(name = "client") Client client, Model model) {
-		String username = client.getUsername();
-		String password = client.getPassword();
+	public String Login(@ModelAttribute(name = "user") User user, Model model) {
+		String username = user.getUsername();
+		String password = user.getPassword();
 
-		if (clientRepository.findByPasswordAndUsername(password, username) != null) {
+		if (userRepository.findByPasswordAndUsername(password, username) != null) {
 			return "redirect:/home";
 		} 
 			model.addAttribute("invalidCredentials", true);
@@ -46,7 +46,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/register")
-	public String showRegistrationForm(@ModelAttribute(name = "client") Client client, Model model) {
+	public String showRegistrationForm(@ModelAttribute(name = "user") User user, Model model) {
 		return "register";
 	}
 }

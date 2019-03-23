@@ -17,50 +17,50 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "client")
-public class Client implements Serializable {
+@Table(name = "user")
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_client")
+	@Column(name = "id_user")
 	private Long id;
 
-	@NotEmpty(message = "{pl.marekhacieja.model.Client.username.NotEmpty}")
+	@NotEmpty(message = "{pl.marekhacieja.model.User.username.NotEmpty}")
 	@Column(name = "username", unique = true)
 	private String username;
 
-	@NotEmpty(message = "{pl.marekhacieja.model.Client.password.NotEmpty}")
+	@NotEmpty(message = "{pl.marekhacieja.model.User.password.NotEmpty}")
 	@Column(name = "password")
 	private String password;
 
-	@Email(message = "{pl.marekhacieja.model.Client.email.Email}")
-	@NotEmpty(message = "{pl.marekhacieja.model.Client.email.NotEmpty}")
+	@Email(message = "{pl.marekhacieja.model.User.email.Email}")
+	@NotEmpty(message = "{pl.marekhacieja.model.User.email.NotEmpty}")
 	@Column(name = "email")
 	private String email;
 	
-	@NotEmpty(message = "{pl.marekhacieja.model.Client.firstname.NotEmpty}")
+	@NotEmpty(message = "{pl.marekhacieja.model.User.firstname.NotEmpty}")
 	@Column(name = "firstname")
 	private String firstname;
 
-	@NotEmpty(message = "{pl.marekhacieja.model.Client.lastname.NotEmpty}")
+	@NotEmpty(message = "{pl.marekhacieja.model.User.lastname.NotEmpty}")
 	@Column(name = "lastname")
 	private String lastname;
 
-	@NotEmpty(message = "{pl.marekhacieja.model.Client.address.NotEmpty}")
+	@NotEmpty(message = "{pl.marekhacieja.model.User.address.NotEmpty}")
 	@Column(name = "address")
 	private String address;
 
-	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
 			CascadeType.REMOVE }, orphanRemoval = true)
 	private List<Order> orders = new ArrayList<>();
 
-	public Client() {
+	public User() {
 	}
 
 	
 
-	public Client(String username, String password, String email, String firstname, String lastname, String address){
+	public User(String username, String password, String email, String firstname, String lastname, String address){
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -135,8 +135,4 @@ public class Client implements Serializable {
 		this.orders = orders;
 	}
 
-	public void addOrder(Order order) {
-		order.setClient(this);
-		getOrders().add(order);
-	}
 }
