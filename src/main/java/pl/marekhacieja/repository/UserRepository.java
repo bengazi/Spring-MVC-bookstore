@@ -9,5 +9,4 @@ import pl.marekhacieja.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByEmail(String email);
 	User findByUsername(String username);
-	User findByPasswordAndUsername(String password, String username);
 }

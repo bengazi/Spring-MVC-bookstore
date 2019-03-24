@@ -22,23 +22,31 @@ public class HomeController {
 	public HomeController(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
-	
+
 	@RequestMapping("/")
-	public String home(Model model) {
+	public String home() {
 		return "home";
 	}
-	
+
 	@GetMapping("/books")
 	public String showBooks(Model model) {
 		List<Book> books = bookRepository.findAll();
 		model.addAttribute("books", books);
 		return "books";
 	}
-	
+
+	@GetMapping("/home")
+	public String showHome(Model model) {
+		// TODO
+		List<Book> myBooks = null;
+		model.addAttribute("myBooks", myBooks);
+		return "home";
+	}
+
 	@PostMapping("/addBooks")
 	public String addBooks() {
-		//TODO: ADD TO ORDER LOGIC
-		return "home";
+		// TODO: ADD TO ORDER LOGIC
+		return "redirect:home";
 	}
 
 }
