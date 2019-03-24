@@ -11,7 +11,6 @@ Simple bookstore app for learning purpose using Spring Boot
 * MySQL
 * Thymeleaf
 
-
 ## Authors
 
 * **Marek Hacieja** 
@@ -19,6 +18,4 @@ Simple bookstore app for learning purpose using Spring Boot
 ## Next goals
 
 * Spring REST
-* Spring Validation
-* Spring Security
-* CSS
+* Front-end
