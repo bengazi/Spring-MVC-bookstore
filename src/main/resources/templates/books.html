@@ -8,6 +8,7 @@
 	<h1>All Books:</h1>
 
 	<!--  TODO: Add 'add' checkboxes  -->
+	<div th:if="${not #lists.isEmpty(books)}">
 	<table border="1">
 		<tr>
 			<th>Title</th>
@@ -26,6 +27,12 @@
 			<td><input type="checkbox" /></td>
 		</tr>
 	</table>
+	</div>
+	
+		<div th:if="${#lists.isEmpty(books)}">
+		<h3>No books available</h3>
+	</div>
+	
 	</br>
 	
 	<form action="#" method="post" th:action="@{/addBooks}">

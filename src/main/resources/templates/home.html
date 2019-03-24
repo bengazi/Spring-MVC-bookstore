@@ -5,29 +5,36 @@
 <title>Homepage</title>
 </head>
 <body>
-		<a th:href="@{/books}">All Books</a>
-		
-		<!--  TODO: fix object connection with User -->
-		<h2>>Your order:</h2>
-		    <table border="1">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Type</th>
-            <th>Publisher</th>
-            <th>Price</th>
-        </tr>
-        <tr th:each="book: ${books}" th:object="${book}">
-            <td th:text="*{title}"></td>
-            <td th:text="*{author}"></td>
-            <td th:text="*{type}"></td>
-            <td th:text="*{publisher}"></td>
-            <td th:text="*{price}"></td>     
-        </tr>
-    </table>
-    </br>
-		 <form action="logmeout" th:action="@{/logmeout}" method="post" >
-        <input type="submit" value="Log me out" />
-        </form>
+	<a th:href="@{/books}">All Books</a>
+
+	<!--  TODO: fix object connection with User -->
+
+	<h2>Your order:</h2>
+	<div th:if="${not #lists.isEmpty(myBooks)}">
+		<table border="1">
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Type</th>
+				<th>Publisher</th>
+				<th>Price</th>
+			</tr>
+			<tr th:each="book: ${myBooks}" th:object="${book}">
+				<td th:text="*{title}"></td>
+				<td th:text="*{author}"></td>
+				<td th:text="*{type}"></td>
+				<td th:text="*{publisher}"></td>
+				<td th:text="*{price}"></td>
+			</tr>
+		</table>
+	</div>
+	<div th:if="${#lists.isEmpty(myBooks)}">
+		<h3>empty</h3>
+	</div>
+
+	</br>
+	<form action="logmeout" th:action="@{/logmeout}" method="post">
+		<input type="submit" value="Log me out" />
+	</form>
 </body>
 </html>
