@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.marekhacieja.model.Book;
+import pl.marekhacieja.model.User;
 import pl.marekhacieja.repository.BookRepository;
 
 @Controller
@@ -20,8 +22,12 @@ public class HomeController {
 	public HomeController(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
-
-
+	
+	@RequestMapping("/")
+	public String home(Model model) {
+		return "home";
+	}
+	
 	@GetMapping("/books")
 	public String showBooks(Model model) {
 		List<Book> books = bookRepository.findAll();
@@ -31,7 +37,7 @@ public class HomeController {
 	
 	@PostMapping("/addBooks")
 	public String addBooks() {
-		//TODO: ADDING TO ORDER LOGIC
+		//TODO: ADD TO ORDER LOGIC
 		return "home";
 	}
 

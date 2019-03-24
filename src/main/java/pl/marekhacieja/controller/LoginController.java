@@ -13,24 +13,24 @@ import pl.marekhacieja.model.User;
 @Controller
 public class LoginController {
 
-	@RequestMapping("/")
+	@RequestMapping("/login")
 	public String home(Model model) {
 		model.addAttribute("user", new User());
-		return "index";
+		return "login";
 	}
 
-	@PostMapping("/")
-	public String Login() {
-		return "redirect:/home";
+	@PostMapping("/login")
+	public String showHome() {
+		return "home";
 	}
 
 	@GetMapping("/home")
-	public String showHome(Model model) {
+	public String showHome2(Model model) {
 		model.addAttribute("myBooks", new Book());
 		//model.addAttribute("books", new Book());
 		return "home";
 	}
-
+	
 	@GetMapping("/register")
 	public String showRegistrationForm(@ModelAttribute(name = "user") User user, Model model) {
 		return "register";

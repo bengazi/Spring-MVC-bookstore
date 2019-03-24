@@ -7,7 +7,7 @@
 <body>
 	<h1>Bookstore</h1>
 	<div class="box">
-	<form action="#" method="post" th:action="@{/}" th:object="${user}">
+	<form action="#" method="post" th:action="@{/login}" th:object="${user}">
 	<p style="color: red;" th:if="${invalidCredentials}" class="error"> Username or Password is wrong</p>
 		<p>
 			<input type="text" th:field="*{username}" placeholder="Username" />
