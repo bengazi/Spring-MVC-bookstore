@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Online bookstore</title>
+<meta charset="utf-8" />
+<title>Bookstore</title>
+<link rel="stylesheet" type="text/css" href="/css/login.css" />
+<link
+	href="http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
-	<h1>Bookstore</h1>
-	<div class="box">
-	<form action="#" method="post" th:action="@{/login}" th:object="${user}">
-	<p style="color: red;" th:if="${invalidCredentials}" class="error"> Username or Password is wrong</p>
-		<p>
-			<input type="text" th:field="*{username}" placeholder="Username" />
-		</p>
-		<p>
-			 <input type="password" th:field="*{password}" placeholder="Password"/>
-		</p>
-		<input type="submit" value="Log in" />
-	</form>
-	<a th:href="@{/register}">Create new account</a>
+
+	<div id="container">
+
+		<div id="logo">Bookstore</div>
+
+
+		<div id="content">
+			<div id="registration">
+				<p style="font-weight: bold; margin-top: 45%; font-size: 22px">New
+					user?</p>
+				<p style="font-size: 18px;">Create a Bookstore account</p>
+				<a th:href="@{/register}">Create new account</a>
+			</div>
+
+			<div id="login">
+				<label style="font-size: 26px; font-weight: bold">LOGIN</label>
+				<form action="#" method="post" th:action="@{/login}"
+					th:object="${user}">
+					<p style="color: red;" th:if="${invalidCredentials}" class="error">
+						Username or Password is wrong</p>
+
+					<p>
+					<p>Username</p>
+					<input type="text" th:field="*{username}" placeholder="Username" />
+					</p>
+					<p>
+					<p>Password</p>
+					<input type="password" th:field="*{password}"
+						placeholder="Password" />
+					</p>
+					<input type="submit" value="Login" />
+				</form>
+			</div>
+
+		</div>
+
+		<div id="footer">© 2019 Marek Hacieja</div>
 	</div>
+
 </body>
 </html>

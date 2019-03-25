@@ -17,9 +17,9 @@ import pl.marekhacieja.repository.UserRepository;
 
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
-	
+
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -28,19 +28,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
-		if(user == null)
+		if (user == null)
 			throw new UsernameNotFoundException("User not found");
-		org.springframework.security.core.userdetails.User userDetails = 
-				new org.springframework.security.core.userdetails.User(
-						user.getUsername(), 
-						user.getPassword(), 
-						convertAuthorities(user.getRoles()));
+		org.springframework.security.core.userdetails.User userDetails = new org.springframework.security.core.userdetails.User(
+				user.getUsername(), user.getPassword(), convertAuthorities(user.getRoles()));
 		return userDetails;
 	}
-	
+
 	private Set<GrantedAuthority> convertAuthorities(Set<UserRole> userRoles) {
 		Set<GrantedAuthority> authorities = new HashSet<>();
-		for(UserRole ur: userRoles) {
+		for (UserRole ur : userRoles) {
 			authorities.add(new SimpleGrantedAuthority(ur.getRole()));
 		}
 		return authorities;
