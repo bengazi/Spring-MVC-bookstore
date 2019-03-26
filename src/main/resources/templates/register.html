@@ -1,62 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Bookstore Registration</title>
+	<meta charset="utf-8" />
+	<title>Bookstore</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<h1>Bookstore registration</h1>
 
-	<div>
-		<form action="#" method="post" th:action="@{/register}"
+	<div id="container">
+	
+		<div id="logo" style="margin-bottom: 2vh">
+			Bookstore
+		</div>
+
+		
+		<div id="contentRegistration">
+		<div id="registrationHeader">
+		<label style="font-size: 26px; float:none">NEW ACCOUNT</label>	
+		</div>
+		
+			<form action="#" method="post" th:action="@{/register}"
 			th:object="${user}">
-			<div>
+			<div id="regForm">
+				
 				<p style="color: red;" th:if="${#fields.hasErrors('username')}"
 					th:errors="*{username}">username errors</p>
-				 <input type="text" id="username" placeholder="Username"
+					
+				<p id="registrationLabels"> Username</p>
+				 <input type="text" name="username" placeholder="Username"
 					th:field="*{username}" class="form-control" autofocus />
-			</div>
-			<div>
+				
 				<p style="color: red;" th:if="${#fields.hasErrors('password')}"
 					th:errors="*{password}">password errors</p>
+					
+					<p id="registrationLabels"> Password</p>
 				 <input type="password" id="password" placeholder="Password"
 					th:field="*{password}" />
-			</div>
-			<div>
-				<p style="color: red;" th:if="${#fields.hasErrors('password')}"
-					th:errors="*{password}">password errors</p>
-				</br> <input type="password" id="cPassword" placeholder="Password" />
-			</div>
-			<div>
+
 				<p style="color: red;" th:if="${#fields.hasErrors('email')}"
 					th:errors="*{email}">password errors</p>
-				</br> <input type="email" id="email" placeholder="E-Mail"
+					
+					<p id="registrationLabels"> Email</p>
+				<input type="email" id="email" placeholder="E-Mail"
 					th:field="*{email}" />
-			</div>
-			<div>
+
 				<p style="color: red;" th:if="${#fields.hasErrors('firstname')}"
 					th:errors="*{firstname}">password errors</p>
-				</br> <input type="text" id="firstname" placeholder="First Name"
+					<p id="registrationLabels"> First Name</p>
+				 <input type="text" id="firstname" placeholder="First Name"
 					th:field="*{firstname}" />
-			</div>
-			<div>
+	
 				<p style="color: red;" th:if="${#fields.hasErrors('lastname')}"
 					th:errors="*{lastname}">password errors</p>
-				</br> <input type="text" id="lastname" placeholder="Last Name"
+					<p id="registrationLabels"> Last Name</p>
+				 <input type="text" id="lastname" placeholder="Last Name"
 					th:field="*{lastname}" />
-			</div>
-			<div>
+
 				<p style="color: red;" th:if="${#fields.hasErrors('address')}"
 					th:errors="*{address}">password errors</p>
-				</br> <input type="text" id="address" placeholder="Address"
+					<p id="registrationLabels"> Address</p>
+				 <input type="text" id="address" placeholder="Address"
 					th:field="*{address}" />
 			</div>
 		
-			<input type="submit" value="Sign in" /> <a th:href="@{/}">Back</a>
+			<input type="submit" value="Sign in" />
+			
+			<a style="margin-left:15px"th:href="@{/}">Back</a>
 
-		</form>
+		</div>	
+		
+		<div id="footer">
+			© 2019 Marek Hacieja
+		</div>
 	</div>
-
+	
 </body>
 </html>

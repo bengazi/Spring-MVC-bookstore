@@ -23,7 +23,7 @@ body
 	font-weight: 800;
 }
 
-#content
+#contentLogin
 {
   color: 	#1a1a1a;
   opacity: 0.9;
@@ -34,8 +34,20 @@ body
   border: 2px solid #C0C0C0;
   padding: 10px;
   text-align: center;
-	
 }
+
+#contentRegistration
+{
+  color: 	#1a1a1a;
+  opacity: 0.9;
+  margin: auto;
+  background-color: white;
+  width: 530px;
+  height: 560px;
+  border: 2px solid #C0C0C0;
+  padding: 10px;
+}
+
 
 #footer
 {
@@ -49,7 +61,7 @@ body
 	font-size: 12px;
 }
 
-#registration
+#left
 {
 	border-right: 2px solid #C0C0C0;
 	float:left;
@@ -57,29 +69,82 @@ body
 	height: 100%;
 }
 
-#login
+#right
 {
 	float:left;
 	width: 49%;
 	height: 100%;
 }
 
-input
+#regForm{
+	
+	margin-left:140px;
+	float:left;
+	width: 100%;
+}
+#loginHeader
 {
-	width: 75%;
-	height: 25px;
-	margin-left: 10 px;
-	border-radius: 5px;
-	border: 1px solid gray;
+	float:left;
+	width:100%;
+	padding: 30px 0 30px 0;
 }
 
+#registrationHeader
+{
+	float:left;
+	width:100%;
+	padding: 20px 0 5px 0;
+	text-align:center;
+}
+
+#registrationLabels
+{
+	font-weight: bold;
+	margin-bottom:10px;
+	font-size:14px;
+}
 
 p
 {
 	line-height: 2px;
 }
 
-input[type=submit]{
+label
+{
+	font-weight: bold;
+	float:left;
+	margin:0 0 3px 29px;
+}
+
+a
+{
+	appearance: button;
+	cursor: default;
+  	border-radius: 15px 50px 30px;
+	font-weight: bold;
+	border: 1px solid gray;
+	background: #f2f2f2;
+	padding: 9px 20px;
+	color: black;
+	text-decoration: none;
+}
+
+a:hover
+{
+	background: #a6a6a6;
+}
+
+input
+{
+	
+	width: 250px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+
+input[type=submit]
+{
 	border-radius: 20px;
 	font-weight: bold;
 	border: 1px solid gray;
@@ -89,6 +154,7 @@ input[type=submit]{
 	height: 35px;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover 
+{
 	background: #5cd65c;
 }
