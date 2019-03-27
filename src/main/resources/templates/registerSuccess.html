@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Registration Success</title>
+    <meta charset="utf-8"/>
+    <title>Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet'
+          type='text/css'>
 </head>
 <body>
-	<h1>Thanks for registration!</h1>
-	<a href="#" th:href="@{/home}">Go to homepage</a>
+
+<div id="container">
+
+    <div id="logo">
+        Bookstore
+    </div>
+
+
+    <div id="contentSuccess">
+        <h1 style="margin-bottom:85px; color:#004d00">Thanks for registration!</h1>
+
+        <a href="#" th:href="@{/home}">Go to homepage</a>
+    </div>
+
+</div>
+
+<div id="footer">
+    © 2019 Marek Hacieja
+</div>
+</div>
+
 </body>
 </html>

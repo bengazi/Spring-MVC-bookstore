@@ -48,6 +48,18 @@ body
   padding: 10px;
 }
 
+#contentSuccess
+{
+	color: 	#1a1a1a;
+	opacity: 0.9;
+	margin: auto;
+	background-color: white;
+	width: 400px;
+	height: 300px;
+	border: 2px solid #C0C0C0;
+	padding: 10px;
+	text-align:center;
+}
 
 #footer
 {
@@ -77,7 +89,7 @@ body
 }
 
 #regForm{
-	
+
 	margin-left:140px;
 	float:left;
 	width: 100%;
@@ -136,7 +148,7 @@ a:hover
 
 input
 {
-	
+	padding-left: 3px;
 	width: 250px;
 	height: 25px;
 	border-radius: 5px;
@@ -154,7 +166,7 @@ input[type=submit]
 	height: 35px;
 }
 
-input[type=submit]:hover 
+input[type=submit]:hover
 {
 	background: #5cd65c;
 }
