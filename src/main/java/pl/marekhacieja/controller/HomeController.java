@@ -3,6 +3,8 @@ package pl.marekhacieja.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,37 +18,43 @@ import pl.marekhacieja.repository.BookRepository;
 @Controller
 public class HomeController {
 
-	private BookRepository bookRepository;
+    private BookRepository bookRepository;
 
-	@Autowired
-	public HomeController(BookRepository bookRepository) {
-		this.bookRepository = bookRepository;
-	}
+    @Autowired
+    public HomeController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
-	@RequestMapping("/")
-	public String home() {
-		return "home";
-	}
+    @RequestMapping("/")
+    public String home() {
+        return "home";
+    }
 
-	@GetMapping("/books")
-	public String showBooks(Model model) {
-		List<Book> books = bookRepository.findAll();
-		model.addAttribute("books", books);
-		return "books";
-	}
+    @GetMapping("/books")
+    public String showBooks(Model model) {
+        List<Book> books = bookRepository.findAll();
+        model.addAttribute("books", books);
+        System.out.println(getLoggedUserName());
+        return "books";
+    }
 
-	@GetMapping("/home")
-	public String showHome(Model model) {
-		// TODO
-		List<Book> myBooks = null;
-		model.addAttribute("myBooks", myBooks);
-		return "home";
-	}
+    @GetMapping("/home")
+    public String showHome(Model model) {
+        // TODO
+        List<Book> myBooks = null;
+        model.addAttribute("myBooks", myBooks);
+        return "home";
+    }
 
-	@PostMapping("/addBooks")
-	public String addBooks() {
-		// TODO: ADD TO ORDER LOGIC
-		return "redirect:home";
-	}
+    @PostMapping("/addBooks")
+    public String addBooks() {
+        // TODO: ADD TO ORDER LOGIC
+        return "redirect:home";
+    }
 
+    private String getLoggedUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return currentPrincipalName;
+    }
 }
