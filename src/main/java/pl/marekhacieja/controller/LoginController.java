@@ -12,16 +12,15 @@ import pl.marekhacieja.model.User;
 @Controller
 public class LoginController {
 
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public String home(Model model) {
-
 		model.addAttribute("user", new User());
 		return "login";
 	}
 
 	@PostMapping("/login")
 	public String showHomeAfterLogin() {
-		return "redirect:home";
+		return "redirect:/";
 	}
 
 	@GetMapping("/register")

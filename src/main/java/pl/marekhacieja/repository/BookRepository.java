@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import pl.marekhacieja.model.Book;
 
+import java.util.Optional;
+
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+    Optional<Book> findById(Long id);
 }

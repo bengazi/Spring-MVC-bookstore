@@ -6,3 +6,4 @@ INSERT INTO book ( author, price, publisher, book_title, book_type) VALUES ( "au
 INSERT INTO book ( author, price, publisher, book_title, book_type) VALUES ( "author4", 10.99, "publisher4", "title4", "type4");
 
 INSERT INTO user(address,email,firstname,lastname,password,username)VALUES("adres1","email@test.pl","Marek","Testcieja","{bcrypt}$2a$10$odJqe1dJkq/dXMTfY2p.cuoNKy5OGund5ILP1gaNM9CVRf6x7Ol6y","1"); 
+
