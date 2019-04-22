@@ -42,13 +42,6 @@ public class Order implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	Order() {
-	}
-
-	public Order(String dateIssued) {
-		this.dateIssued = dateIssued;
-	}
-
 	public Long getId() {
 		return id;
 	}

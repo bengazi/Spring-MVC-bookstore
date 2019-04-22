@@ -48,15 +48,14 @@ public class HomeController {
 
     @PostMapping("/addBooks/{id}")
     public String addBooks(@PathVariable Long id, Model model) {
-        // TODO: ADD TO ORDER LOGIC
-//        System.out.println(id);
-//        System.out.println(getLoggedUserName());
+        orderService.addBookToOrder(id, getLoggedUserName());
         return "redirect:/";
     }
 
     @PostMapping("/deleteBook/{id}")
     public String removeBook(@PathVariable Long id, Model model) {
         // TODO: DELETE FROM ORDER LOGIC
+        orderService.deleteBookFromOrder(id, getLoggedUserName());
         return "redirect:/";
     }
 
