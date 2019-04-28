@@ -30,7 +30,7 @@ public class Order implements Serializable {
 	@Column(name = "id_order")
 	private Long id;
 	@ManyToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.PERSIST)
+            cascade = CascadeType.MERGE)
 	@Fetch(FetchMode.SELECT)
 	@JoinTable(name = "order_books", joinColumns = {
 			@JoinColumn(name = "order_id", referencedColumnName = "id_order") }, inverseJoinColumns = {

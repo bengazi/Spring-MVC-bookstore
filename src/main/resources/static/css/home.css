@@ -1,6 +1,41 @@
-.home-jumbo {
-    background: url('../images/book.jpg') center;
+body
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
 }
-.media-body {
-    margin-left: 10px;
+
+.jumpers img
+{
+    background: url('../images/logo.png');
+    width: 100%;
+    height: auto;
+}
+
+.navbar
+{
+    min-height: 57px;
+}
+
+.bg-jumpers
+{
+    background-color: #4d4d4d !important;
+    color: white;
+}
+.col-lg-8
+{
+    margin-top:10px !important;
+}
+
+input
+{
+    margin-top:5px;
+    border-style: solid;
+    border-color: white;
+    background: #4d4d4d;
+    color: white;
+}
+input:hover
+{
+    background: white;
+    color: #4d4d4d;
 }

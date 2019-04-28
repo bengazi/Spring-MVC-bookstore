@@ -1,7 +1,7 @@
 body
 {
 	background-color: #404040;
-	background-image: url("/images/background.jpg");
+	background-image: url("../images/background.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 100vh;
 	font-family: 'Lato', sans-serif;
@@ -69,7 +69,6 @@ body
 	width: 100%;
 	color: white;
 	margin: 5px;
-	padding-bottom: 0px;
 	font-size: 12px;
 }
 
@@ -130,7 +129,6 @@ label
 
 a
 {
-	appearance: button;
 	cursor: default;
   	border-radius: 15px 50px 30px;
 	font-weight: bold;
