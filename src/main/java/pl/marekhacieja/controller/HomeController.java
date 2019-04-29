@@ -1,17 +1,12 @@
 package pl.marekhacieja.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import pl.marekhacieja.model.Book;
 import pl.marekhacieja.service.BookService;
 import pl.marekhacieja.service.OrderService;
 
@@ -36,24 +31,23 @@ public class HomeController {
 
     @GetMapping("/books")
     public String allBooks(Model model) {
-        List<Book> books = bookService.getAllBooks();
-        model.addAttribute("books", books);
+        bookService.addAttributeBooks(model);
         return "books";
     }
 
-    @PostMapping("/addBooks/{id}")
+    @PostMapping("/books/{id}")
     public String addBookToOrder(@PathVariable Long id, Model model) {
         orderService.addBookToOrder(id, model);
         return "message";
     }
 
-    @PostMapping("/addOrder")
+    @PostMapping("/orders")
     public String addOrder() {
         orderService.addOrder(getLoggedUserName());
         return "redirect:/";
     }
 
-    @PostMapping("/deleteBook/{id}")
+    @GetMapping("/orders/{id}")
     public String removeBook(@PathVariable Long id, Model model) {
         orderService.deleteBookFromOrder(id, model);
         return "message";

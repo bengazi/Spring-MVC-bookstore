@@ -38,7 +38,7 @@
 <main>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2" th:if="${!books.isEmpty()}">
+            <div class="col-lg-10 offset-lg-1" th:if="${!books.isEmpty()}">
                 <table class="table">
                     <thead>
                     <tr>
@@ -51,15 +51,15 @@
                     </tr>
                     </thead>
                     <tbody th:remove="all-but-first">
-                    <tr th:each="book: ${books}">
-                        <th scope="row" th:text="${book.id}"></th>
+                    <tr th:each="book, idx: ${books}">
+                        <th scope="row" th:text="${idx.index+1}"></th>
                         <td th:text="${book.title}"></td>
                         <td th:text="${book.author}"></td>
                         <td th:text="${book.type}"></td>
                         <td th:text="${book.publisher}"></td>
                         <td th:text="${book.price}"></td>
                         <td>
-                            <form action="#" th:action="@{|/addBooks/${book.id}|}" method="post">
+                            <form action="#" th:action="@{|/books/${book.id}|}" method="post">
                                 <button class="btn btn-success ">Add</button>
                             </form>
                         </td>
