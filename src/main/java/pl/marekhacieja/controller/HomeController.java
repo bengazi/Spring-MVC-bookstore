@@ -9,17 +9,20 @@ import org.springframework.web.bind.annotation.*;
 
 import pl.marekhacieja.service.BookService;
 import pl.marekhacieja.service.OrderService;
+import pl.marekhacieja.service.UserService;
 
 @Controller
 public class HomeController {
 
     private BookService bookService;
     private OrderService orderService;
+    private UserService userService;
 
     @Autowired
-    public HomeController(BookService bookService, OrderService orderService) {
+    public HomeController(BookService bookService, OrderService orderService, UserService userService) {
         this.bookService = bookService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -51,6 +54,12 @@ public class HomeController {
     public String removeBook(@PathVariable Long id, Model model) {
         orderService.deleteBookFromOrder(id, model);
         return "message";
+    }
+
+    @GetMapping("/users/{id}")
+    public String myAccount(@PathVariable Long id, Model model){
+        userService.addAttributeUser(getLoggedUserName(), model);
+        return "account";
     }
 
     private String getLoggedUserName() {

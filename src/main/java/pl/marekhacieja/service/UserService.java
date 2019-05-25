@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import org.springframework.ui.Model;
 import pl.marekhacieja.model.User;
 import pl.marekhacieja.model.UserRole;
 import pl.marekhacieja.repository.UserRepository;
@@ -38,5 +39,11 @@ public class UserService {
         String passwordHash = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         userRepository.save(user);
+    }
+
+
+    public void addAttributeUser(String loggedUserName, Model model) {
+        User user = userRepository.findByUsername(loggedUserName);
+        model.addAttribute("user", user);
     }
 }

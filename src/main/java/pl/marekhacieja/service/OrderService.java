@@ -36,7 +36,7 @@ public class OrderService {
         if (book.isPresent()) {
             model.addAttribute("message", new Message("Success", book.get().getTitle() + " was added to the order"));
         } else {
-            model.addAttribute("message", new Message("failed", book.get().getTitle() + " was not added to the order"));
+            model.addAttribute("message", new Message("Failed", book.get().getTitle() + " was not added to the order"));
         }
     }
 

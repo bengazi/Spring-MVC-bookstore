@@ -23,7 +23,6 @@ public class ClientOrder {
     }
 
     void delete(Book book) {
-        //TODO FIX
         order.getBooks().remove(book);
     }
 

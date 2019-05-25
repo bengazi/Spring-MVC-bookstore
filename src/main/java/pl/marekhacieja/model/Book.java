@@ -122,6 +122,33 @@ public class Book implements Serializable {
 				+ publisher + ", price=" + price + ", orders=" + orders + "]";
 	}
 
-	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
 
+		Book book = (Book) o;
+
+		if (Double.compare(book.price, price) != 0) return false;
+		if (!id.equals(book.id)) return false;
+		if (!title.equals(book.title)) return false;
+		if (!author.equals(book.author)) return false;
+		if (!type.equals(book.type)) return false;
+		return publisher.equals(book.publisher);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result;
+		long temp;
+		result = id.hashCode();
+		result = 31 * result + title.hashCode();
+		result = 31 * result + author.hashCode();
+		result = 31 * result + type.hashCode();
+		result = 31 * result + publisher.hashCode();
+		temp = Double.doubleToLongBits(price);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
 }
