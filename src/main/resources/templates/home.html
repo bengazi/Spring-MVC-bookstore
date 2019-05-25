@@ -20,13 +20,13 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-between" id="mainmenu">
-            <div class="navbar-nav">
+            <div class="navbar-nav ">
                 <a class="nav-item nav-link" href="#" th:href="@{/}"> Home </a>
 
                 <a class="nav-item nav-link" href="#" th:href="@{/books}"> All books </a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#"> <b th:inline="text" class="user">
+                <a class="nav-item nav-link" href="#" th:href="@{|/users/${#httpServletRequest.remoteUser}|}">  <b th:inline="text" class="user">
                     [[${#httpServletRequest.remoteUser}]] </b> </a>
                 <form action="logmeout" th:action="@{/logmeout}" method="post">
                     <input type="submit" value="Log out"/>
@@ -35,7 +35,6 @@
         </div>
     </nav>
 </header>
-
 <main>
     <div class="container">
         <div class="row">
