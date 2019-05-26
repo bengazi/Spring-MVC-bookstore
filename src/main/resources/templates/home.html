@@ -58,7 +58,7 @@
                         <td th:text="${book.author}"></td>
                         <td th:text="${book.type}"></td>
                         <td th:text="${book.publisher}"></td>
-                        <td th:text="${book.price}"></td>
+                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł</td>
                         <td>
                             <form action="#" th:action="@{|/orders/${book.id}|}" th:method="get">
                                 <button class="btn btn-danger">remove</button>
@@ -68,7 +68,7 @@
                     </tbody>
                 </table>
                 <div class="text-right">
-                    <h5 th:text="|Total: ${#numbers.formatDecimal(sum,1,2,'COMMA')}zł|"></h5>
+                    <h5 th:text="|Total: ${#numbers.formatDecimal(sum,0,'COMMA',2, 'POINT')}zł|"></h5>
                 </div>
 
                 <div class="col-1 offset-11">
@@ -77,13 +77,14 @@
                     </form>
                 </div>
             </div>
-
             <div class="col-lg-8 offset-lg-2" th:if="${#lists.isEmpty(order.books)}">
                 <h2>Your basket is Empty</h2>
             </div>
+            <div class="col-12"><br><br><br><br></div>
         </div>
     </div>
 </main>
+<!--TODO footer-->
 <footer class="page-footer offset-1 fixed-bottom">
     <hr>
     <div class="footer-copyright py-3">© 2018 Copyright:
