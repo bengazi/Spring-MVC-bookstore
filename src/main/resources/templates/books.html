@@ -39,7 +39,7 @@
     <div class="container">
         <div class="row flex-row border m-2" th:each="book: ${books}">
             <div class="col-2">
-                <img src="../images/books_pictures/1.jpg" width=100px, height=150px;>
+                <img th:src="@{${'../images/books_pictures/' + book.picture + '.jpg'}}" title="book cover" width=100px height=150px/>
             </div>
             <div class="col-7">
                 <div>
@@ -52,6 +52,7 @@
                     Publisher: <a th:text="${book.publisher}"></a>
                 </div>
                 <div>
+<!--                    todo: book.desc-->
                     <p> I was born in an empty sea, My tears created oceans
                         Producing tsunami waves with emotions
                         Patrolling the open seas of an unknown galaxy
@@ -61,7 +62,7 @@
             </div>
             <div class="col-2 mt-3">
                 <div>
-                    <h3> <span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}"></span> zł </h3>
+                     <h4 th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')} + 'zł'"> </h4>
                 </div>
                 <form action="#" th:action="@{|/books/${book.id}|}" method="post">
                     <button class="btn btn-success ">Add to basket</button>

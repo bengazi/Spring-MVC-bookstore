@@ -1,10 +1,7 @@
 package pl.marekhacieja.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,6 +51,10 @@ public class User implements Serializable {
 	@Column(name = "address")
 	private String address;
 
+	@NotEmpty(message = "{pl.marekhacieja.model.User.address.NotEmpty}")
+	@Column(name = "telephone_number", length=9)
+	private String telephone;
+
 	// User <-> UserDetails
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private Set<UserRole> roles = new HashSet<>();
@@ -66,13 +67,14 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String username, String password, String email, String firstname, String lastname, String address) {
+	public User(String username, String password, String email, String firstname, String lastname, String address, String telephone) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address = address;
+		this.telephone = telephone;
 	}
 
 
@@ -148,10 +150,49 @@ public class User implements Serializable {
 		this.orders = orders;
 	}
 
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", email=" + email + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", address=" + address + ", roles=" + roles + ", orders=" + orders + "]";
+	public String getTelephone() {
+		return telephone;
 	}
 
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", email='" + email + '\'' +
+				", firstname='" + firstname + '\'' +
+				", lastname='" + lastname + '\'' +
+				", address='" + address + '\'' +
+				", telephone='" + telephone + '\'' +
+				", roles=" + roles +
+				", orders=" + orders +
+				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(id, user.id) &&
+				Objects.equals(username, user.username) &&
+				Objects.equals(password, user.password) &&
+				Objects.equals(email, user.email) &&
+				Objects.equals(firstname, user.firstname) &&
+				Objects.equals(lastname, user.lastname) &&
+				Objects.equals(address, user.address) &&
+				Objects.equals(telephone, user.telephone) &&
+				Objects.equals(roles, user.roles) &&
+				Objects.equals(orders, user.orders);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, username, password, email, firstname, lastname, address, telephone, roles, orders);
+	}
 }

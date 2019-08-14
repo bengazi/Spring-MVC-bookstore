@@ -2,6 +2,7 @@ package pl.marekhacieja.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,19 +46,24 @@ public class Book implements Serializable {
 	@Column(name = "price", scale = 2)
 	private double price;
 
+	@NotEmpty(message = "{pl.marekhacieja.model.Book.publisher.NotEmpty}")
+	@Column(name = "picture_source")
+	private String picture;
+
 	@ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
 	private List<Order> orders;
 
 	public Book() {
 	}
 
-	public Book(String title, String author, String type, String publisher, double price) {
+	public Book(String title, String author, String type, String publisher, double price, String picture) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.type = type;
 		this.publisher = publisher;
 		this.price = price;
+		this.picture = picture;
 	}
 
 	public double getPrice() {
@@ -78,6 +84,14 @@ public class Book implements Serializable {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public void setTitle(String title) {
@@ -126,29 +140,19 @@ public class Book implements Serializable {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
 		Book book = (Book) o;
-
-		if (Double.compare(book.price, price) != 0) return false;
-		if (!id.equals(book.id)) return false;
-		if (!title.equals(book.title)) return false;
-		if (!author.equals(book.author)) return false;
-		if (!type.equals(book.type)) return false;
-		return publisher.equals(book.publisher);
-
+		return Double.compare(book.price, price) == 0 &&
+				Objects.equals(id, book.id) &&
+				Objects.equals(title, book.title) &&
+				Objects.equals(author, book.author) &&
+				Objects.equals(type, book.type) &&
+				Objects.equals(publisher, book.publisher) &&
+				Objects.equals(picture, book.picture) &&
+				Objects.equals(orders, book.orders);
 	}
 
 	@Override
 	public int hashCode() {
-		int result;
-		long temp;
-		result = id.hashCode();
-		result = 31 * result + title.hashCode();
-		result = 31 * result + author.hashCode();
-		result = 31 * result + type.hashCode();
-		result = 31 * result + publisher.hashCode();
-		temp = Double.doubleToLongBits(price);
-		result = 31 * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		return Objects.hash(id, title, author, type, publisher, price, picture, orders);
 	}
 }
