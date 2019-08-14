@@ -39,7 +39,7 @@
     <div class="container">
         <div class="row flex-row border m-2" th:each="book: ${books}">
             <div class="col-2">
-                <img th:src="@{${'../images/books_pictures/' + book.picture + '.jpg'}}" title="book cover" width=100px height=150px/>
+                <img th:src="@{${'../images/books_pictures/' + book.picture + '.jpg'}}" th:title="${book.picture}" width=100px height=150px/>
             </div>
             <div class="col-7">
                 <div>
