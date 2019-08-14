@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
+    <title>Books</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet">
 </head>
-
 <body>
 <header>
     <nav class="navbar navbar-dark bg-jumpers navbar-expand-lg">
@@ -23,7 +22,7 @@
             <div class="navbar-nav ">
                 <a class="nav-item nav-link" href="#" th:href="@{/}"> Home </a>
 
-                <a class="nav-item nav-link" href="#" th:href="@{/books}"> All books </a>
+                <a class="nav-item nav-link" href="#" th:href="@{/basket}"> Basket </a>
             </div>
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#" th:href="@{|/users/${#httpServletRequest.remoteUser}|}"> <b
@@ -37,69 +36,41 @@
     </nav>
 </header>
 <main>
-    <div class="container-fluid offset-1 col-11 mt-2">
-        <div class="row">
-            <div th:if="${not #lists.isEmpty(order.books)}">
-                <h2>Shopping basket</h2>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Book</th>
-                        <th scope="col">price before discount</th>
-                        <th scope="col">discount</th>
-                        <th scope="col">price after discount</th>
-                        <th scope="col">quantity</th>
-                        <th scope="col">value</th>
-                    </tr>
-                    </thead>
-                    <tbody th:remove="all-but-first">
-                    <tr scope="row" th:each="book, idx: ${order.books}">
-                        <td scope="row" th:text="${idx.index+1}"></td>
-                        <td>
-                            <div class="book-description">
-                                <div><a class="font-weight-bold h6" th:text="${book.title}"></a></div>
-                                <div><a th:text="'Author: ' + ${book.author}"></a></div>
-                                <div><a th:text="'Publisher: ' + ${book.publisher}"></a></div>
-                            </div>
-                        </td>
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
-                        </td>
-                        <!--                        todo-->
-                        <td th:text="0"></td>
-                        <!--                        todo-->
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
-                        </td>
-                        <!--                        todo-->
-                        <td th:text="1"></td>
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
-                        </td>
-                        <td>
-                            <!--                            todo-->
-                            <form action="#" th:action="@{|/orders/${book.id}|}" th:method="get">
-                                <button class="btn btn-danger">remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="text-right">
-                    <h5 th:text="|Total: ${#numbers.formatDecimal(sum,0,'COMMA',2, 'POINT')}zł|"></h5>
+    <div class="container">
+        <div class="row flex-row border m-2" th:each="book: ${books}">
+            <div class="col-2">
+                <img th:src="@{${'../images/books_pictures/' + book.picture + '.jpg'}}" th:title="${book.picture}" width=100px height=150px/>
+            </div>
+            <div class="col-7">
+                <div>
+                    <h5 class="font-weight-bold" th:text="${book.title}"></h5>
                 </div>
-
-                <div class="offset-11">
-                    <form action="#" th:action="@{/orders}" method="post">
-                        <button class="btn btn-outline-dark">order</button>
-                    </form>
+                <div>
+                    Author: <a th:text="${book.author}"></a>
+                </div>
+                <div>
+                    Publisher: <a th:text="${book.publisher}"></a>
+                </div>
+                <div>
+<!--                    todo: book.desc-->
+                    <p> I was born in an empty sea, My tears created oceans
+                        Producing tsunami waves with emotions
+                        Patrolling the open seas of an unknown galaxy
+                        I was floating in front of who I am physically
+                   </p>
                 </div>
             </div>
-            <div th:if="${#lists.isEmpty(order.books)}">
-                <h2>Your basket is Empty</h2>
+            <div class="col-2 mt-3">
+                <div>
+                     <h4 th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')} + 'zł'"> </h4>
+                </div>
+                <form action="#" th:action="@{|/books/${book.id}|}" method="post">
+                    <button class="btn btn-success ">Add to basket</button>
+                </form>
             </div>
         </div>
     </div>
 </main>
-<!--TODO footer-->
 <footer class="page-footer offset-1 fixed-bottom">
     <hr>
     <div class="footer-copyright py-3">© 2018 Copyright:
