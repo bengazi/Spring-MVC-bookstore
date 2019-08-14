@@ -1,46 +1,45 @@
-body
-{
+body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
 }
 
-.jumpers img
-{
+.jumpers img {
     background: url('../images/logo.png');
     width: 100%;
     height: auto;
 }
 
-.navbar
-{
+.navbar {
     min-height: 57px;
 }
 
-.bg-jumpers
-{
+.bg-jumpers {
     background-color: #4d4d4d !important;
     color: white;
 }
-.col-lg-8
-{
-    margin-top:10px !important;
+
+.col-lg-8 {
+    margin-top: 10px !important;
 }
 
-footer
-{
+.container {
+    font-size: 12px;
+    width: 700px;
+}
+
+footer {
     font-size: 12px;
 }
 
-input
-{
-    margin-top:5px;
+input {
+    margin-top: 5px;
     border-style: solid;
     border-color: white;
     background: #4d4d4d;
     color: white;
 }
-input:hover
-{
+
+input:hover {
     background: white;
     color: #4d4d4d;
 }

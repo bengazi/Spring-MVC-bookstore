@@ -25,7 +25,8 @@
                 <a class="nav-item nav-link" href="#" th:href="@{/books}"> All books </a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#" th:href="@{|/users/${#httpServletRequest.remoteUser}|}">  <b th:inline="text" class="user">
+                <a class="nav-item nav-link" href="#" th:href="@{|/users/${#httpServletRequest.remoteUser}|}"> <b
+                        th:inline="text" class="user">
                     [[${#httpServletRequest.remoteUser}]] </b> </a>
                 <form action="logmeout" th:action="@{/logmeout}" method="post">
                     <input type="submit" value="Log out"/>
@@ -36,40 +37,36 @@
 </header>
 <main>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1" th:if="${!books.isEmpty()}">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Publisher</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                    </thead>
-                    <tbody th:remove="all-but-first">
-                    <tr th:each="book, idx: ${books}">
-                        <th scope="row" th:text="${idx.index+1}"></th>
-                        <td th:text="${book.title}"></td>
-                        <td th:text="${book.author}"></td>
-                        <td th:text="${book.type}"></td>
-                        <td th:text="${book.publisher}"></td>
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł</td>
-                        <td>
-                            <form action="#" th:action="@{|/books/${book.id}|}" method="post">
-                                <button class="btn btn-success ">Add</button>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="row flex-row border m-2" th:each="book: ${books}">
+            <div class="col-2">
+                <img src="../images/books_pictures/1.jpg" width=100px, height=150px;>
             </div>
-            <div th:if="${books.isEmpty()}" class="text-center">
-                <h2>No books available</h2>
+            <div class="col-7">
+                <div>
+                    <h5 class="font-weight-bold" th:text="${book.title}"></h5>
+                </div>
+                <div>
+                    Author: <a th:text="${book.author}"></a>
+                </div>
+                <div>
+                    Publisher: <a th:text="${book.publisher}"></a>
+                </div>
+                <div>
+                    <p> I was born in an empty sea, My tears created oceans
+                        Producing tsunami waves with emotions
+                        Patrolling the open seas of an unknown galaxy
+                        I was floating in front of who I am physically
+                   </p>
+                </div>
             </div>
-            <div class="col-12"><br><br><br><br></div>
+            <div class="col-2 mt-3">
+                <div>
+                    <h3> <span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}"></span> zł </h3>
+                </div>
+                <form action="#" th:action="@{|/books/${book.id}|}" method="post">
+                    <button class="btn btn-success ">Add to basket</button>
+                </form>
+            </div>
         </div>
     </div>
 </main>
