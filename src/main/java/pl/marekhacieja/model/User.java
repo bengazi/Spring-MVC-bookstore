@@ -51,7 +51,6 @@ public class User implements Serializable {
 	@Column(name = "address")
 	private String address;
 
-	@NotEmpty(message = "{pl.marekhacieja.model.User.address.NotEmpty}")
 	@Column(name = "telephone_number", length=9)
 	private String telephone;
 

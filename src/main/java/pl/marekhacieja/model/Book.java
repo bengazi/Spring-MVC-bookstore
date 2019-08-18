@@ -147,12 +147,11 @@ public class Book implements Serializable {
 				Objects.equals(author, book.author) &&
 				Objects.equals(type, book.type) &&
 				Objects.equals(publisher, book.publisher) &&
-				Objects.equals(picture, book.picture) &&
-				Objects.equals(orders, book.orders);
+				Objects.equals(picture, book.picture);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, title, author, type, publisher, price, picture, orders);
+		return Objects.hash(id, title, author, type, publisher, price, picture);
 	}
 }
