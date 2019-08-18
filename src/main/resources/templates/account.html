@@ -10,23 +10,31 @@
 <header>
     <nav class="navbar navbar-dark bg-jumpers navbar-expand-lg">
         <a class="navbar-brand" href="#" th:href="@{/}">
-            <img src="/imgages/logo.png" th:src="@{/images/logo.png}" width="30" height="30"
+            <img src="/imgages/icons/logo.png" th:src="@{/images/icons/logo.png}" width="30" height="30"
                  class="d-inline-block mr-1 align-bottom" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
-                aria-controls="mainmenu" aria-expanded="false" aria-label="togler">
+                aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-between" id="mainmenu">
-            <div class="navbar-nav">
+            <div class="navbar-nav ">
                 <a class="nav-item nav-link" href="#" th:href="@{/}"> Home </a>
-
-                <a class="nav-item nav-link" href="#" th:href="@{/basket}"> Basket </a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#"> <b th:inline="text" class="user">
-                    [[${#httpServletRequest.remoteUser}]] </b> </a>
+                <div th:if="${sum != 0}">
+                    <small>
+                        <a class="text-white-50 nav-item nav-link" href="#" th:href="@{/basket}"
+                           th:text="|Basket: ${#numbers.formatDecimal(sum, 0, 'COMMA', 2, 'POINT')}zł|"></a>
+                    </small>
+                </div>
+                <a class="navbar-brand" href="#" th:href="@{/basket}">
+                    <img src="/imgages/icons/basket.png" th:src="@{/images/icons/basket.png}" width="30" height="30">
+                </a>
+                <a class="nav-item nav-link" href="#" th:href="@{|/users/${#httpServletRequest.remoteUser}|}">
+                    <b th:inline="text" class="user"> [[${#httpServletRequest.remoteUser}]] </b>
+                </a>
                 <form action="logmeout" th:action="@{/logmeout}" method="post">
                     <input type="submit" value="Log out"/>
                 </form>
@@ -35,12 +43,41 @@
     </nav>
 </header>
 <main>
-    TODO
+    <div class="container-fluid mt-2">
+        <div class="row justify-content-center">
+            <div class="col-4 border d-flex mr-1">
+                <div class="d-flex align-items-center">
+                    <img scr="/imgages/icons/user.png" th:src="@{/images/icons/user.png}" width="50" height="50"
+                         class="d-inline-block mr-1 align-bottom" alt="">
+                </div>
+                <div>
+                    <h2 class="text-center">Account</h2>
+                    <ul>
+                        <li><a>Account information</a></li>
+                        <li><a>Change account information</a></li>
+                        <li><a>Change password</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-4 border d-flex">
+                <div class="d-flex align-items-center">
+                    <img scr="/imgages/icons/wallet.png" th:src="@{/images/icons/wallet.png}" width="50" height="50">
+                </div>
+                <div>
+                    <h2 class="text-center">Bills</h2>
+                    <ul>
+                        <li><a>Your Orders</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-<footer class="page-footer offset-1 fixed-bottom">
-    <hr>
-    <div class="footer-copyright py-3">© 2018 Copyright:
-        <a href="https://github.com/marekhacieja"> Marek Hacieja</a>
+<footer  class="py-4 mt-2 bg-dark text-white-50">
+    <div class="container text-center">
+        <small>Copyright &copy; <a class="text-white-50" href="https://github.com/marekhacieja"> Marek Hacieja</a></small>
     </div>
 </footer>
 </body>

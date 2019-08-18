@@ -8,29 +8,21 @@
           type='text/css'>
 </head>
 <body>
-
 <div id="container">
-
     <div id="logo">
         Bookstore
     </div>
-
-
     <div id="contentLogin">
         <div id="left">
             <p style="font-weight:bold; margin-top:45%;font-size:22px">New user?</p>
             <p style="font-size:18px;margin-bottom:30px;">Create a Bookstore account</p>
             <a th:href="@{/register}">Create new account</a>
         </div>
-
         <div id="right">
             <div id="loginHeader">
                 <label style="font-size: 26px; float:none">LOGIN</label>
             </div>
-
-
             <form action="#" method="post" th:action="@{/login}" th:object="${user}">
-
                 <label> Username</label>
                 <p>
                     <input type="text" th:field="*{username}" placeholder="Username" class="form-control" autofocus/>
@@ -47,6 +39,5 @@
         © 2019 Marek Hacieja
     </div>
 </div>
-
 </body>
 </html>

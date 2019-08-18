@@ -67,6 +67,7 @@ public class OrderService {
         } else {
             model.addAttribute("message", new Message("Failed", book.get().getTitle() + " was not deleted from order"));
         }
+
     }
 
     public void addAttributeSum(Model model) {

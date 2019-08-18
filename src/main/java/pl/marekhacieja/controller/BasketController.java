@@ -34,7 +34,15 @@ public class BasketController {
     @GetMapping("/orders/{id}")
     public String removeBook(@PathVariable Long id, Model model) {
         orderService.deleteBookFromOrder(id, model);
+        orderService.addAttributeSum(model);
         return "message";
+    }
+
+    @GetMapping("/basket")
+    public String referToBooks(Model model) {
+        orderService.addAttributeOrder(model);
+        orderService.addAttributeSum(model);
+        return "basket";
     }
 
     private String getLoggedUserName() {
