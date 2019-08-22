@@ -37,4 +37,12 @@ public class HomeController {
         return "message";
     }
 
+    @GetMapping("/books/{id}")
+    public String referToBookDetail() {
+
+        //###todo: detail book page###
+
+        return "";
+    }
+
 }

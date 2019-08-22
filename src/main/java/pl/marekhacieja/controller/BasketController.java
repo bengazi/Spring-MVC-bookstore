@@ -8,11 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.marekhacieja.service.BookService;
 import pl.marekhacieja.service.OrderService;
 import pl.marekhacieja.service.UserService;
 
 @Controller
+@RequestMapping(value = "/basket")
 public class BasketController {
     private BookService bookService;
     private OrderService orderService;
@@ -38,7 +40,7 @@ public class BasketController {
         return "message";
     }
 
-    @GetMapping("/basket")
+    @GetMapping("")
     public String referToBooks(Model model) {
         orderService.addAttributeOrder(model);
         orderService.addAttributeSum(model);

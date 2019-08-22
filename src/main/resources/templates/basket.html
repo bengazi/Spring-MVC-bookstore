@@ -33,7 +33,7 @@
                 <a class="navbar-brand" href="#" th:href="@{/basket}">
                     <img src="/imgages/icons/basket.png" th:src="@{/images/icons/basket.png}" width="30" height="30">
                 </a>
-                <a class="nav-item nav-link" href="#" th:href="@{|/users/${#httpServletRequest.remoteUser}|}">
+                <a class="nav-item nav-link" href="#" th:href="@{/my-account}">
                     <b th:inline="text" class="user"> [[${#httpServletRequest.remoteUser}]] </b>
                 </a>
                 <form action="logmeout" th:action="@{/logmeout}" method="post">
@@ -83,7 +83,7 @@
                         </td>
                         <td>
                             <!--                            todo-->
-                            <form action="#" th:action="@{|/orders/${book.id}|}" th:method="get">
+                            <form action="#" th:action="@{|basket/orders/${book.id}|}" th:method="get">
                                 <button class="btn btn-danger">remove</button>
                             </form>
                         </td>

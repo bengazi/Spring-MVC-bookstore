@@ -6,9 +6,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.marekhacieja.service.OrderService;
 import pl.marekhacieja.service.UserService;
 
+@RequestMapping(value = "/my-account")
 @Controller
 public class MyAccountController {
     private UserService userService;
@@ -20,7 +22,7 @@ public class MyAccountController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("")
     public String referToMyAccount(Model model) {
         userService.addAttributeUser(getLoggedUserName(), model);
         orderService.addAttributeSum(model);
