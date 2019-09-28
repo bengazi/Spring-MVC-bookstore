@@ -24,10 +24,10 @@
                 <a class="nav-item nav-link" href="#" th:href="@{/}"> Home </a>
             </div>
             <div class="navbar-nav">
-                <div th:if="${sum != 0}">
+                <div th:if="${totalValue != 0}">
                     <small>
                         <a class="text-white-50 nav-item nav-link" href="#" th:href="@{/basket}"
-                           th:text="|Basket: ${#numbers.formatDecimal(sum, 0, 'COMMA', 2, 'POINT')}zł|"></a>
+                           th:text="|Basket: ${#numbers.formatDecimal(totalValue, 0, 'COMMA', 2, 'POINT')}zł|"></a>
                     </small>
                 </div>
                 <a class="navbar-brand" href="#" th:href="@{/basket}">
@@ -44,7 +44,7 @@
     </nav>
 </header>
 <main>
-    <div class="container-fluid offset-1 col-11 mt-2">
+    <div class="d-flex justify-content-center mt-2">
         <div class="row">
             <div th:if="${not #lists.isEmpty(order.books)}">
                 <h2>Shopping basket</h2>
@@ -53,9 +53,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Book</th>
-                        <th scope="col">price before discount</th>
-                        <th scope="col">discount</th>
-                        <th scope="col">price after discount</th>
+                        <th scope="col">price</th>
                         <th scope="col">quantity</th>
                         <th scope="col">value</th>
                     </tr>
@@ -65,24 +63,26 @@
                         <td scope="row" th:text="${idx.index+1}"></td>
                         <td>
                             <div class="book-description">
-                                <div><a class="font-weight-bold h6" th:text="${book.title}"></a></div>
-                                <div><a th:text="'Author: ' + ${book.author}"></a></div>
-                                <div><a th:text="'Publisher: ' + ${book.publisher}"></a></div>
+                                <div>
+                                    <a class="font-weight-bold h6" th:text="${book.title}"></a>
+                                </div>
+                                <div>
+                                    <a th:text="'Author: ' + ${book.author}"></a>
+                                </div>
+                                <div>
+                                    <a th:text="'Publisher: ' + ${book.publisher}"></a>
+                                </div>
                             </div>
                         </td>
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
+                        <td>
+                            <span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
                         </td>
-                        <!--                        todo-->
-                        <td th:text="0"></td>
-                        <!--                        todo-->
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
-                        </td>
-                        <!--                        todo-->
+                        <!--               TODO add quantity-->
                         <td th:text="1"></td>
-                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">10.00</span>zł
+                        <!--               TODO: after adding quantity refactor-->
+                        <td><span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT') }">10.00</span>zł
                         </td>
                         <td>
-                            <!--                            todo-->
                             <form action="#" th:action="@{|basket/orders/${book.id}|}" th:method="get">
                                 <button class="btn btn-danger">remove</button>
                             </form>
@@ -91,11 +91,11 @@
                     </tbody>
                 </table>
                 <div class="text-right">
-                    <h5 th:text="|Total: ${#numbers.formatDecimal(sum,0,'COMMA',2, 'POINT')}zł|"></h5>
+                    <h5 th:text="|Total: ${#numbers.formatDecimal(totalValue, 0, 'COMMA', 2, 'POINT')}zł|"></h5>
                 </div>
 
                 <div class="offset-11">
-                    <form action="#" th:action="@{/orders}" method="post">
+                    <form action="#" th:action="@{basket/orders}" method="post">
                         <button class="btn btn-outline-dark">order</button>
                     </form>
                 </div>

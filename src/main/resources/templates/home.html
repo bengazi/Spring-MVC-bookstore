@@ -23,10 +23,10 @@
                 <a class="nav-item nav-link" href="#" th:href="@{/}"> Home </a>
             </div>
             <div class="navbar-nav">
-                <div th:if="${sum != 0}">
+                <div th:if="${totalValue != 0}">
                     <small>
                         <a class="text-white-50 nav-item nav-link" href="#" th:href="@{/basket}"
-                           th:text="|Basket: ${#numbers.formatDecimal(sum, 0, 'COMMA', 2, 'POINT')}zł|"></a>
+                           th:text="|Basket: ${#numbers.formatDecimal(totalValue, 0, 'COMMA', 2, 'POINT')}zł|"></a>
                     </small>
                 </div>
                 <a class="navbar-brand" href="#" th:href="@{/basket}">
@@ -44,7 +44,7 @@
 </header>
 <main>
     <div class="container">
-        <div class="row flex-row border m-2" th:each="book: ${books}">
+        <div class="book-description row flex-row border m-2" th:each="book: ${books}">
             <div class="col-2">
                 <img th:src="@{${'../images/books_pictures/' + book.picture + '.jpg'}}" th:title="${book.picture}" width=100px height=150px/>
             </div>
