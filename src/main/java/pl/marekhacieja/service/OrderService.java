@@ -12,7 +12,6 @@ import pl.marekhacieja.repository.UserRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,13 +44,14 @@ public class OrderService {
             Order order = clientOrder.getOrder();
             order.setUser(userRepository.findByUsername(username));
             order.setDateIssued(getTime());
+            order.setTotalValue(getTotalValue());
             orderRepository.save(order);
             clientOrder.clear();
         }
     }
 
     private String getTime() {
-        String pattern = "yyyy-MM-dd";
+        String pattern = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(new Date());
         return date;
@@ -70,12 +70,16 @@ public class OrderService {
 
     }
 
-    public void addAttributeSum(Model model) {
-        model.addAttribute("sum", clientOrder
+    public void addAttributeTotalValue(Model model) {
+        model.addAttribute("totalValue", getTotalValue());
+    }
+
+    private double getTotalValue() {
+        return clientOrder
                 .getOrder()
                 .getBooks().stream()
                 .mapToDouble(Book::getPrice)
-                .sum());
+                .sum();
     }
 
     public void addAttributeOrder(Model model) {

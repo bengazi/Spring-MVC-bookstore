@@ -26,14 +26,14 @@ public class HomeController {
     @GetMapping("/")
     public String referToHome(Model model) {
         bookService.addAttributeBooks(model);
-        orderService.addAttributeSum(model);
+        orderService.addAttributeTotalValue(model);
         return "home";
     }
 
     @PostMapping("/books/{id}")
     public String addBookToOrder(@PathVariable Long id, Model model) {
         orderService.addBookToOrder(id, model);
-        orderService.addAttributeSum(model);
+        orderService.addAttributeTotalValue(model);
         return "message";
     }
 

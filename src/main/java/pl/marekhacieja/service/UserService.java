@@ -1,6 +1,8 @@
 package pl.marekhacieja.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,9 +43,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-
-    public void addAttributeUser(String loggedUserName, Model model) {
-        User user = userRepository.findByUsername(loggedUserName);
+    public void addAttributeUser(Model model) {
+        User user = userRepository.findByUsername(getLoggedUserName());
         model.addAttribute("user", user);
+    }
+
+    protected String getLoggedUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return currentPrincipalName;
     }
 }
