@@ -39,7 +39,6 @@ public class HomeController {
 
     @GetMapping("/books/{id}")
     public String referToBookDetail() {
-
         //###todo: detail book page###
 
         return "";

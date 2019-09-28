@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -43,40 +43,8 @@
     </nav>
 </header>
 <main>
-    <div class="container">
-        <div class="book-description row flex-row border m-2" th:each="book: ${books}">
-            <div class="col-2">
-                <img th:src="@{${'../images/books_pictures/' + book.picture + '.jpg'}}" th:title="${book.picture}" width=100px height=150px/>
-            </div>
-            <div class="col-7">
-                <div>
-                    <h5 class="font-weight-bold" th:text="${book.title}"></h5>
-                </div>
-                <div>
-                    Author: <a th:text="${book.author}"></a>
-                </div>
-                <div>
-                    Publisher: <a th:text="${book.publisher}"></a>
-                </div>
-                <div>
-<!--                    todo: book.desc-->
-                    <p> I was born in an empty sea, My tears created oceans
-                        Producing tsunami waves with emotions
-                        Patrolling the open seas of an unknown galaxy
-                        I was floating in front of who I am physically
-                   </p>
-                </div>
-            </div>
-            <div class="col-2 mt-3">
-                <div>
-                     <h4 th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')} + 'zł'"> </h4>
-                </div>
-                <form action="#" th:action="@{|/books/${book.id}|}" method="post">
-                    <button class="btn btn-success ">Add to basket</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    TODO
+
 </main>
 <footer  class="py-4 mt-2 bg-dark text-white-50">
     <div class="container text-center">

@@ -26,7 +26,29 @@ public class MyAccountController {
     public String referToMyAccount(Model model) {
         userService.addAttributeUser(getLoggedUserName(), model);
         orderService.addAttributeSum(model);
-        return "account";
+        return "account/main";
+    }
+
+    // ### TODO ###
+
+    @GetMapping("/information")
+    public String referToAccountInformation(Model model) {
+        return "account/information";
+    }
+
+    @GetMapping("/change")
+    public String referToAccountInformationChange(Model model) {
+        return "account/informationChange";
+    }
+
+    @GetMapping("/orders")
+    public String referToMyOrders(Model model) {
+        return "account/orders";
+    }
+
+    @GetMapping("/password")
+    public String referToPasswordChange(Model model) {
+        return "account/passwordChange";
     }
 
     private String getLoggedUserName() {
