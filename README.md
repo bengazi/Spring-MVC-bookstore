@@ -4,10 +4,6 @@ Simple bookstore app for learning purpose using Spring Boot
 ## Built With
 
 * Spring Boot
-* Spring MVC
-* Hibernate
-* Java Persistence API
-* Spring Data
 * MySQL
 * Thymeleaf
 
@@ -16,6 +12,3 @@ Simple bookstore app for learning purpose using Spring Boot
 * **Marek Hacieja** 
 
 ## Next goals
-
-* Spring REST
-* Front-end
