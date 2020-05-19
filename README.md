@@ -6,9 +6,3 @@ Simple bookstore app for learning purpose using Spring Boot
 * Spring Boot
 * MySQL
 * Thymeleaf
-
-## Authors
-
-* **Marek Hacieja** 
-
-## Next goals
